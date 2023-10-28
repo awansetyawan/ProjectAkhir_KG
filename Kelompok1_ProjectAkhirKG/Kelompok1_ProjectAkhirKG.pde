@@ -110,30 +110,6 @@ void drawBulan(){
   
   // Pop untuk akhir objek bulan
   popMatrix(); // Hapus transformasi
-  
-  //// Push untuk awal objek bulan
-  //pushMatrix(); // Simpan transformasi
-  
-  //// Bulan
-  //stroke(231, 226, 207); // Warna Cream
-  //strokeWeight(1);
-  //fill(231, 226, 207); // Warna Cream
-  //circle(1250, 160, 120);
-
-  //// Bintik Bulan
-  //stroke(218, 210, 191); // Warna Cream Gelap
-  //strokeWeight(1);
-  //fill(218, 210, 191); // Warna Cream Gelap
-  //circle(1295, 160, 20);
-  //circle(1280, 180, 15);
-  //circle(1220, 130, 15);
-  //circle(1230, 180, 30);
-  //circle(1250, 150, 10);
-  //circle(1270, 130, 15);
-  //noStroke();
-  
-  //// Pop untuk akhir objek bulan
-  //popMatrix(); // Hapus transformasi
 }
 
 

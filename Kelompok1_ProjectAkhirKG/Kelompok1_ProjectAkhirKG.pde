@@ -1,10 +1,13 @@
 //import Piramid;
 
-int numStars = 70; // Jumlah Bintang
+int numStars = 80; // Jumlah Bintang
 int[] starX = new int[numStars];
 int[] starY = new int[numStars];
 
 boolean Suasana = false;
+
+float MoonX = 600; // Koordinat awal X bumi
+float MoonSpeed = 1; // Kecepatan gerak bumi
 
 // Fungsi mouseClicked untuk mematikan dan menghidupan scaling
 void mouseClicked(){
@@ -68,6 +71,69 @@ void Malam(){
  background(19, 0, 90); 
  
  drawStars();
+ 
+ drawBulan();
+}
+
+void drawBulan(){
+  // Menggerakkan bumi ke kiri dan ke kanan
+  MoonX += MoonSpeed;
+  
+  // Jika bumi mencapai batas kiri atau kanan layar, balik arah geraknya
+  if (MoonX < 100 || MoonX > width - 100) {
+    MoonSpeed *= -1;
+  }
+  
+  // Push untuk awal objek bulan
+  pushMatrix(); // Simpan transformasi
+  
+  // Mengatur posisi bulan agar berpindah berdasarkan nilaiXBulan
+  translate(MoonX, 0);
+  
+  // Bulan
+  stroke(231, 226, 207); // Warna Cream
+  strokeWeight(1);
+  fill(231, 226, 207); // Warna Cream
+  circle(0, 160, 120); // Posisi bulan diubah menjadi (0, 160)
+  
+  // Bintik Bulan (posisinya juga disesuaikan)
+  stroke(218, 210, 191); // Warna Cream Gelap
+  strokeWeight(1);
+  fill(218, 210, 191); // Warna Cream Gelap
+  circle(45, 160, 20);
+  circle(30, 180, 15);
+  circle(-30, 130, 15);
+  circle(-20, 180, 30);
+  circle(0, 150, 10);
+  circle(20, 130, 15);
+  noStroke();
+  
+  // Pop untuk akhir objek bulan
+  popMatrix(); // Hapus transformasi
+  
+  //// Push untuk awal objek bulan
+  //pushMatrix(); // Simpan transformasi
+  
+  //// Bulan
+  //stroke(231, 226, 207); // Warna Cream
+  //strokeWeight(1);
+  //fill(231, 226, 207); // Warna Cream
+  //circle(1250, 160, 120);
+
+  //// Bintik Bulan
+  //stroke(218, 210, 191); // Warna Cream Gelap
+  //strokeWeight(1);
+  //fill(218, 210, 191); // Warna Cream Gelap
+  //circle(1295, 160, 20);
+  //circle(1280, 180, 15);
+  //circle(1220, 130, 15);
+  //circle(1230, 180, 30);
+  //circle(1250, 150, 10);
+  //circle(1270, 130, 15);
+  //noStroke();
+  
+  //// Pop untuk akhir objek bulan
+  //popMatrix(); // Hapus transformasi
 }
 
 

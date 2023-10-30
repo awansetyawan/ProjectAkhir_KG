@@ -62,13 +62,13 @@ void draw(){
   rect(-200,400,2000,800);
   popMatrix();
 
-  piramid(800,350,1.1,2,-3);
+  piramid(800,350,1.4,2,-3);
     
-  piramid(500,350,0.7,2.4,-3);
+  piramid(430,330,1,2.2,-3);
   
-  piramid(300,350,0.5,2.5,-3);
+  piramid(150,310,0.7,2.4,-3);
   
-  sungai();
+  //sungai();
 }
 
 void generateRandomStars() {

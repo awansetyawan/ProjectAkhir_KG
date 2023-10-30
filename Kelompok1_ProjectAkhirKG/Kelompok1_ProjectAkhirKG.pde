@@ -9,6 +9,17 @@ boolean Suasana = false;
 float MoonX = 600; // Koordinat awal X bumi
 float MoonSpeed = 1; // Kecepatan gerak bumi
 
+float sunX = 700 ;    // Koordinat matahari
+float sunY = height;
+float cloudX1 = 600;  // Koordinat awan
+float cloudX2 = 600;
+float cloudSpeed1 = 1;  // Kecepatan pergerakan awan
+float cloudSpeed2 = 1;
+
+color skyColor1 =  color(255,102,0);
+color skyColor2 = color(255,214,0);
+
+
 // Fungsi mouseClicked untuk mematikan dan menghidupan scaling
 void mouseClicked(){
   if (!Suasana) {
@@ -32,8 +43,7 @@ void draw(){
   if(!Suasana){
     Malam();
   }else{
-    // Taruh disini untuk void siang hari + awan
-    background(255); 
+    Sore();
   }
   
   pushMatrix();
@@ -67,12 +77,87 @@ void drawStars() {
   }
 }
 
+void drawCloud(float x, float y) {
+  // Kerangka Awan
+  fill(255);
+  noStroke();
+  ellipse(x, y, 100, 50);
+  ellipse(x + 50, y, 100, 50);
+  ellipse(x + 100, y, 100, 50);
+
+  // Detail Awan
+  ellipse(x - 30, y - 20, 60, 50);
+  ellipse(x + 20, y - 20, 60, 60);
+  ellipse(x + 70, y - 20, 60, 60);
+  ellipse(x + 120, y - 20, 60, 50);
+
+  ellipse(x - 50, y, 60, 50);
+  ellipse(x - 30, y + 20, 60, 50);
+  ellipse(x + 20, y + 20, 60, 60);
+  ellipse(x + 70, y + 20, 60, 60);
+  ellipse(x + 120, y + 20, 60, 50);
+  ellipse(x + 140, y, 60, 50);
+}
+
 void Malam(){
  background(19, 0, 90); 
  
  drawStars();
  
  drawBulan();
+}
+
+void Sore(){
+  float inter = map(sunY, height, 0, 0, 1);
+  color currentColor = lerpColor(skyColor1, skyColor2, inter);
+  background(currentColor);
+
+  drawSun();
+  movingCloud();
+}
+
+void drawSun(){
+  fill(255, 165, 0);  // Warna oren
+  noStroke();
+  pushMatrix();
+  translate(sunX, sunY, -300);
+  circle(0, 0, 200);
+  popMatrix();
+  
+  // Pergerakan matahari ke atas
+  sunY += 1;
+  
+  // Jika matahari berada di atas layar, reset posisinya
+  if (sunY > height - 100) {
+    sunY = -300;
+  }
+}
+
+void movingCloud(){
+  fill(255);  // Warna putih
+  noStroke();
+  drawCloud(cloudX1, 100);
+  
+  // Awan 2
+  fill(255);  // Warna putih
+  noStroke();
+  drawCloud(cloudX2, 150);
+  
+  // Pergerakan awan
+  cloudX1 -= cloudSpeed1;
+  
+  // Jika awan keluar dari layar, reset posisinya
+  if (cloudX1 < -180) {
+    cloudX1 = width + 150;
+  }
+  
+   // Pergerakan awan
+  cloudX2 += cloudSpeed2;
+  
+  // Jika awan keluar dari layar, reset posisinya
+  if (cloudX2 > width + 100) {
+    cloudX2 = -200;
+  }
 }
 
 void drawBulan(){

@@ -23,12 +23,7 @@ float x;
 float y;
 int x1 = 0;
 
-float startX, startY; // Koordinat X dan Y awal
-float endX, endY;   // Koordinat X dan Y akhir
-float duration = 30000; // Durasi animasi dalam milidetik (misalnya 2 detik)
-float startTime;
-float elapsed;
-
+boolean alir = false;
 
 // Fungsi mouseClicked untuk mematikan dan menghidupan scaling
 void mouseClicked(){
@@ -62,11 +57,11 @@ void draw(){
   rect(-200,400,2000,800);
   popMatrix();
 
-  piramid(800,350,1.1,2,-3);
+  piramid(800,350,1.4,2,-3);
     
-  piramid(500,350,0.7,2.4,-3);
+  piramid(430,330,1,2.2,-3);
   
-  piramid(300,350,0.5,2.5,-3);
+  piramid(150,310,0.7,2.4,-3);
   
   sungai();
 }
@@ -255,148 +250,120 @@ void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   popMatrix();
 }
 
-int x2 = 0;
-int y2 = 600;
-float x3 = 0; // Koordinat X awal
-float speed = 8; // Kecepatan pergerakan
-int lastTime = 0;
-
-float easeInOutQuad(float t, float b, float c, float d) {
-  t /= d / 2;
-  if (t < 1) return c / 2 * t * t + b;
-  t--;
-  return -c / 2 * (t * (t - 2) - 1) + b;
-}
-
 void sungai(){
- float currentTime = millis();
- elapsed = currentTime - startTime; 
+  pushMatrix();
+  strokeWeight(3);
+  if(Suasana == false){
+       stroke(#3D76B2);
+       fill(#2661C4);
+    }
+    else{ 
+      stroke(#57C3F7);
+    fill(#4387CE);}
+  translate(0,480);
+  beginShape();
+    curveVertex(0,10);
+    curveVertex(0,10);
+    curveVertex(200,50);
+    curveVertex(600,220);
+    curveVertex(1500,220);
+    curveVertex(1500,400);
+    curveVertex(580,300);
+    curveVertex(200,80);
+    curveVertex(0,20);
+    curveVertex(0,20);
+    
+  endShape();
   
-pushMatrix();
-if(Suasana == false){
-  stroke(#71A9FF);
-  fill(100, 150, 255); // Warna biru untuk sungai
-}
-
-else {
-  stroke(#86C1FA);
-  fill(#6CADED);
-}
-
-//noStroke();
-strokeWeight(10);
-beginShape();
-curveVertex(x2, y2);
-curveVertex(x2, y2);
-curveVertex(x2+300, y2+50);
-curveVertex(width, y2+50);
-curveVertex(width, y2+50);
-curveVertex(width, y2+300);
-curveVertex(0, y2+300);
-curveVertex(0, y2+300);
-endShape();
-
-  stroke(#9BDBF7);
-  strokeWeight(2);
-    // Hitung kemajuan animasi menggunakan easing (misalnya, quadratic easing)
-    float progress = easeInOutQuad(elapsed, 0, 1, duration);
-
-    // Interpolasi linear dari awal ke akhir dengan kemajuan animasi
-    float x = lerp(startX, endX, progress);
-    float y = lerp(startY, endY, progress);
-      pushMatrix();
-  translate(x,680);
-  
-  line(0,50,50,50);
-  line(50*2,20,50*3,20);
-  line(50*4,50,50*5,50);
-  line(50*6,20,50*7,20);
-  line(50*8,50,50*9,50);
-  line(50*10,20,50*11,20);
-  line(50*12,50,50*13,50);
-  line(50*14,20,50*15,20);
-  line(50*16,50,50*17,50);
-  line(50*18,20,50*19,20);
-  line(50*20,50,50*21,50);
-  line(50*22,20,50*23,20);
-  line(50*24,50,50*25,50);
-  line(50*26,20,50*27,20);
-  line(50*28,50,50*29,50);
-  
+  aliran(1000,250);
+  aliran(800,300);
+  aliran(1200,300);
   popMatrix();
-  float centerX = -50; // Koordinat X pusat lingkaran
-  float centerY = 80; // Koordinat Y pusat lingkaran
-  float radius = 50; // Radius lingkaran
-  float startAngle = PI; // Sudut mulai (180 derajat)
-  float endAngle = TWO_PI; // Sudut selesai (360 derajat)
-
-endShape();
-popMatrix();
-  stroke(#9B8769);
-batu();
-noStroke();
+  batu();
 }
+
+void aliran(int x, int y){
+
+  pushMatrix();
+    translate(x,y);
+  beginShape();
+    noFill();
+    if(Suasana == false){
+       stroke(#9ABFF2);
+    }
+    else{ stroke(#EBFA8D);}
+    
+    //if(alir == false){
+    curveVertex(0,10);
+    curveVertex(0,10);
+    curveVertex(10,0);
+    curveVertex(20,10);
+    curveVertex(30,0);
+    curveVertex(40,10);
+    curveVertex(50,0);
+    curveVertex(60,10);
+    curveVertex(70,0);
+    curveVertex(80,10);
+    curveVertex(90,0);
+    curveVertex(100,10);
+    curveVertex(100,10);
+  //  alir = true;
+  //}
+    
+    //else{
+    //  curveVertex(0,0);
+    //  curveVertex(0,0);
+    //  curveVertex(10,10);
+    //  curveVertex(20,0);
+    //  curveVertex(30,10);
+    //  curveVertex(40,0);
+    //  curveVertex(50,10);
+    //  curveVertex(60,0);
+    //  curveVertex(70,10);
+    //  curveVertex(80,0);
+    //  curveVertex(90,10);
+    //  curveVertex(100,0);
+    //  curveVertex(100,0);
+    //  alir = false;
+    //}
+  endShape();
+  popMatrix();
+}
+
 
 void batu(){
-  
   pushMatrix();
-  translate(200,770);
-  fill(#98948D);
+  translate(100,600);
+  stroke(#929380);
+  fill(#88897F);
   beginShape();
-  stroke(#98948D);
-  vertex(0,50,10);
-  vertex(80,50,10);
-  vertex(120,0,10);
-  vertex(130,20,10);
-  vertex( 180,50,10 );
-  vertex( 190, 80,10 );
-  vertex( -10, 80,10 );
-  vertex( 0,50 ,10 );
-  vertex( 0,50 ,10 );
-  //vertex();
-  endShape();
-  beginShape();
-  stroke(#83807B);
-    fill(#83807B);
-  vertex(120,0,10);
-  vertex(130,20,10);
-  vertex( 180,50,10 );
-  vertex( 190, 80,10 );
-  vertex(120,50,10);
-   vertex(120,0,10);
-  endShape();
-  stroke(#9BDBF7);
-  beginShape();
-  line(-20,90,200,90);
+   vertex(0,0);
+   vertex(100,0);
+   //vertex(50,50);
+   vertex(0,0);
+   vertex(0,100);
+   vertex(50,140);
+   vertex(150,120);
+   vertex(100,0);
   endShape();
   popMatrix();
   
   pushMatrix();
-  translate(600,720);
-  fill(#98948D);
+    translate(100,600);
   beginShape();
-  stroke(#98948D);
-  vertex(0,50,10);
-  vertex(80,50,10);
-  vertex(120,0,10);
-  vertex(130,20,10);
-  vertex( 180,50,10 );
-  vertex( 190, 80,10 );
-  vertex( -10, 80,10 );
-  vertex( 0,50 ,10 );
-  vertex( 0,50 ,10 );
-  //vertex();
+  stroke(#6C6C6A);
+  fill(#6C6C6A);
+  vertex(0,0);
+   vertex(100,0);
+   vertex(50,50);
+   vertex(0,0);
   endShape();
-  beginShape();
-  stroke(#83807B);
-    fill(#83807B);
-  vertex(120,0,10);
-  vertex(130,20,10);
-  vertex( 180,50,10 );
-  vertex( 190, 80,10 );
-  vertex(120,50,10);
-   vertex(120,0,10);
-  endShape();
-  stroke(#9BDBF7);
   popMatrix();
+}
+void delay(int milliseconds) {
+  try {
+    Thread.sleep(milliseconds);
+  } catch (InterruptedException e) {
+    e.printStackTrace();
+  }
 }

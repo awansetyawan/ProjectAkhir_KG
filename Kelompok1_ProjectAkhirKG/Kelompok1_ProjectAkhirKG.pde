@@ -63,7 +63,7 @@ void draw(){
   
   piramid(150,310,0.7,2.4,-3);
   
-  sungai();
+  //sungai();
 }
 
 void generateRandomStars() {

@@ -52,16 +52,33 @@ void draw(){
   }
   
   pushMatrix();
-  fill(#CEAD51);
+  fill(#CA965C);
   translate(0,0,-200);
   rect(-200,400,2000,800);
-  popMatrix();
+  arc(1000,400,2500,50,PI,TWO_PI);
 
-  piramid(800,350,1.4,2,-3);
-    
-  piramid(430,330,1,2.2,-3);
   
-  piramid(150,310,0.7,2.4,-3);
+  //square(1150,400,200);
+  fill(#DFA878);
+  arc(600,900,2500,300,PI,TWO_PI);
+  //fill(0);
+ 
+  quad(2000,400,2000,900,900,900,1000,900);
+
+  
+  square(-200,900,2000);
+  popMatrix();
+ 
+  
+
+  piramid(680,300,1,2.1,-2.5);
+  piramid(350,310,0.8,2.3,-2);
+  piramid(100,350,0.5,2.3,-2);
+  //piramid(180,500,0.3,-3,4);
+  fill(0);
+
+
+
   
   sungai();
 }
@@ -93,17 +110,17 @@ void drawCloud(float x, float y) {
   ellipse(x + 100, y, 100, 50);
 
   // Detail Awan
-  ellipse(x - 30, y - 20, 60, 50);
-  ellipse(x + 20, y - 20, 60, 60);
-  ellipse(x + 70, y - 20, 60, 60);
-  ellipse(x + 120, y - 20, 60, 50);
+  circle(x - 30, y - 20, 60);
+  circle(x + 20, y - 20, 60);
+  circle(x + 70, y - 20, 60);
+  circle(x + 120, y - 20, 60);
 
-  ellipse(x - 50, y, 60, 50);
-  ellipse(x - 30, y + 20, 60, 50);
-  ellipse(x + 20, y + 20, 60, 60);
-  ellipse(x + 70, y + 20, 60, 60);
-  ellipse(x + 120, y + 20, 60, 50);
-  ellipse(x + 140, y, 60, 50);
+  circle(x - 50, y, 60);
+  circle(x - 30, y + 20, 60);
+  circle(x + 20, y + 20, 60);
+  circle(x + 70, y + 20, 60);
+  circle(x + 120, y + 20, 60);
+  circle(x + 140, y, 60);
 }
 
 void Malam(){
@@ -213,6 +230,8 @@ void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   noStroke();
   rotateZ(PI/rotateZ);
   scale(skala);
+  fill(0);
+
    
   beginShape();
   //lights();
@@ -221,7 +240,7 @@ void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   vertex( 150, -150, -150);
   vertex(   0,    0,  150);
   endShape();
-  fill(#D6AE5F); // green
+  fill(#BF9474); // green
   beginShape();
   //lights();
   
@@ -231,7 +250,7 @@ void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   endShape();
   
   beginShape();
-  fill(#D6AE5F);
+  fill(#BF9474);
   lights();
   
   vertex( 150, 150, -150);
@@ -242,12 +261,14 @@ void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   //pushMatrix();
   beginShape();
   noLights();
-  fill(#D6AE5F);
+  fill(#BF9474);
   vertex(-150,  150, -150);
   vertex(-150, -150, -150);
   vertex(   0,    0,  150);
   endShape();
   popMatrix();
+  //triangle(0,300,30,300,175,100);
+
 }
 
 void sungai(){
@@ -262,24 +283,28 @@ void sungai(){
     fill(#4387CE);}
   translate(0,480);
   beginShape();
-    curveVertex(0,10);
-    curveVertex(0,10);
-    curveVertex(200,50);
+    curveVertex(0,20);
+    curveVertex(0,20);
+    curveVertex(300,50);
     curveVertex(600,220);
-    curveVertex(1500,220);
-    curveVertex(1500,400);
-    curveVertex(580,300);
-    curveVertex(200,80);
-    curveVertex(0,20);
-    curveVertex(0,20);
+    curveVertex(1500,300);
+    curveVertex(1500,450);
+    curveVertex(200,300);
+    curveVertex(150,80);
+    curveVertex(0,25);
+    curveVertex(0,25);
     
   endShape();
   
-  aliran(1000,250);
+  aliran(1000,340);
   aliran(800,300);
   aliran(1200,300);
   popMatrix();
-  batu();
+  batu(0.4, 20,550);
+  batu(0.7, 1020,630);
+  batu(0.8, 80,750);
+
+
 }
 
 void aliran(int x, int y){
@@ -331,9 +356,10 @@ void aliran(int x, int y){
 }
 
 
-void batu(){
+void batu(float skala, float x, float y){
   pushMatrix();
-  translate(100,600);
+  translate(x,y);
+  scale(skala);
   stroke(#929380);
   fill(#88897F);
   beginShape();
@@ -349,7 +375,8 @@ void batu(){
   popMatrix();
   
   pushMatrix();
-    translate(100,600);
+    translate(x,y);
+     scale(skala);
   beginShape();
   stroke(#6C6C6A);
   fill(#6C6C6A);

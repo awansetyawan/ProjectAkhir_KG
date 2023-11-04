@@ -1,5 +1,8 @@
 //import Piramid;
 
+PImage ImageUnta; // Deklarasi objek Image
+PImage ImageBangunan; // Deklarasi objek Image
+
 int numStars = 80; // Jumlah Bintang
 int[] starX = new int[numStars];
 int[] starY = new int[numStars];
@@ -42,6 +45,13 @@ void setup(){
   hint(DISABLE_OPTIMIZED_STROKE); // Membuat anti aliasing
   
   generateRandomStars(); // Memanggil fungsi membuat bintang
+  
+  ImageBangunan = loadImage("Bangunan.png");
+  ImageBangunan.resize(600, 130);
+  
+  ImageUnta = loadImage("Unta.png");
+  ImageUnta.resize(200, 200);
+  
 }
 
 void draw(){
@@ -57,7 +67,6 @@ void draw(){
   rect(-200,400,2000,800);
   arc(1000,400,2500,50,PI,TWO_PI);
 
-  
   //square(1150,400,200);
   fill(#DFA878);
   arc(600,900,2500,300,PI,TWO_PI);
@@ -65,11 +74,10 @@ void draw(){
  
   quad(2000,400,2000,900,900,900,1000,900);
 
-  
   square(-200,900,2000);
   popMatrix();
- 
   
+  image(ImageBangunan, 915, 263);
 
   piramid(680,300,1,2.1,-2.5);
   piramid(350,310,0.8,2.3,-2);
@@ -80,6 +88,10 @@ void draw(){
   sungai();
   
   drawTreePalm();
+  
+  drawKerikil();
+  
+  image(ImageUnta, 600, 450);
 }
 
 void generateRandomStars() {
@@ -98,6 +110,16 @@ void drawStars() {
     noStroke();
     ellipse(starX[i], starY[i], starSize, starSize); // Menggambar bintang dengan ukuran yang berubah
   }
+}
+
+void drawKerikil(){
+  fill(#88897F);
+  
+  // Setengah lingkaran
+  arc(270, 880, 80, 80, PI, TWO_PI);
+  arc(400, 880, 50, 50, PI, TWO_PI);
+  arc(920, 710, 60, 60, PI, TWO_PI);
+  arc(1300, 720, 90, 90, PI, TWO_PI);
 }
 
 void drawTreePalm(){
@@ -561,8 +583,7 @@ void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   rotateZ(PI/rotateZ);
   scale(skala);
   fill(0);
-
-   
+  
   beginShape();
   //lights();
   fill(255,0,0);
@@ -605,24 +626,26 @@ void sungai(){
   pushMatrix();
   strokeWeight(3);
   if(Suasana == false){
-       stroke(#3D76B2);
-       fill(#2661C4);
-    }
-    else{ 
-      stroke(#57C3F7);
-    fill(#4387CE);}
+    stroke(#3D76B2);
+    fill(#2661C4);
+  }
+  else{ 
+    stroke(#57C3F7);
+    fill(#4387CE);
+  }
   translate(0,480);
+  
   beginShape();
-    curveVertex(0,20);
-    curveVertex(0,20);
-    curveVertex(300,50);
-    curveVertex(600,220);
-    curveVertex(1500,300);
-    curveVertex(1500,450);
-    curveVertex(200,300);
-    curveVertex(150,80);
-    curveVertex(0,25);
-    curveVertex(0,25);
+  curveVertex(0,20);
+  curveVertex(0,20);
+  curveVertex(300,50);
+  curveVertex(600,220);
+  curveVertex(1500,300);
+  curveVertex(1500,450);
+  curveVertex(200,300);
+  curveVertex(150,80);
+  curveVertex(0,25);
+  curveVertex(0,25);
     
   endShape();
   
@@ -633,8 +656,6 @@ void sungai(){
   batu(0.4, 20,550);
   batu(0.7, 1020,630);
   batu(0.8, 80,750);
-
-
 }
 
 void aliran(int x, int y){

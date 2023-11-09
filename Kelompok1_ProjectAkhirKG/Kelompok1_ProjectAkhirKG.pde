@@ -1,4 +1,4 @@
-//import Piramid;
+  //import Piramid;
 
 PImage ImageUnta; // Deklarasi objek Image
 PImage ImageBangunan; // Deklarasi objek Image
@@ -9,8 +9,12 @@ int[] starY = new int[numStars];
 
 boolean Suasana = false;
 
-float MoonX = 600; // Koordinat awal X bumi
+float MoonX = 100; // Koordinat awal X bumi
 float MoonSpeed = 1; // Kecepatan gerak bumi
+float cahaya = 0;
+float cahaya2 = 0;
+boolean kekiri = false;
+boolean ulang = false; 
 
 float sunX = 700 ;    // Koordinat matahari
 float sunY = height;
@@ -55,6 +59,11 @@ void setup(){
 }
 
 void draw(){
+//  float dirY = (mouseY / float(height) - 0.5) * 2;
+//float dirX = (mouseX / float(width) - 0.5) * 2;
+
+
+//directionalLight(204, 204, 204, -dirX, -dirY, -1);
   if(!Suasana){
     Malam();
   }else{
@@ -66,19 +75,17 @@ void draw(){
   translate(0,0,-200);
   rect(-200,400,2000,800);
   arc(1000,400,2500,50,PI,TWO_PI);
-
   //square(1150,400,200);
   fill(#DFA878);
   arc(600,900,2500,300,PI,TWO_PI);
   //fill(0);
  
-  quad(2000,400,2000,900,900,900,1000,900);
-
-  square(-200,900,2000);
+  //quad(2000,400,2000,900,900,900,1000,900);
+  square(-200,900,2000);  
   popMatrix();
   
+  bayanganPiramid();
   image(ImageBangunan, 915, 263);
-
   piramid(680,300,1,2.1,-2.5);
   piramid(350,310,0.8,2.3,-2);
   piramid(100,350,0.5,2.3,-2);
@@ -86,12 +93,42 @@ void draw(){
   fill(0);
   
   sungai();
-  
   drawTreePalm();
-  
   drawKerikil();
+  //image(ImageUnta, 600, 450);
   
-  image(ImageUnta, 600, 450);
+}
+
+void bayanganPiramid(){
+  pushMatrix();
+  translate(1100,220);
+  text(mouseX,10,0);
+  text(mouseY,10,10);
+  popMatrix();
+  //rotate(radians(90));
+  pushMatrix();
+  fill(#C49E90);
+  //triangle(100, 300, 150, 150, 250, 300);
+  triangle(786, 471, 855, 441, 1100, 451);
+  popMatrix();
+  //popMatrix();
+}
+
+void piramidBack(){
+  pushMatrix();
+  translate(500,100);
+  scale(.8);
+     triangle(200, 100, 300, 300, 100, 300);
+  popMatrix();
+}
+
+void piramidBackground(){
+  pushMatrix();
+  translate(800,200);
+  //triangle(150, 340, 300, 470, 300, 340); 
+   //triangle(200, 100, 300, 300, 100, 300);
+      triangle(200, 100, 300, 300, 100, 300);
+  popMatrix();
 }
 
 void generateRandomStars() {
@@ -507,6 +544,16 @@ void drawSun(){
   if (sunY > height - 100) {
     sunY = -300;
   }
+  if (ulang == false){
+    directionalLight(204, 204, 204, cahaya2, 0, -1);
+    cahaya2 = cahaya2 + 0.005;
+  }
+  //else if(ulang == true){
+  //  cahaya = cahaya - 0.002;
+  //  directionalLight(204, 204, 204, cahaya, 0, -1);
+  //}
+  if (sunY < height - 100){kekiri = true;}
+  if (sunY == height - 100){kekiri = false; cahaya2 = 0;}
 }
 
 void movingCloud(){
@@ -539,17 +586,28 @@ void movingCloud(){
 void drawBulan(){
   // Menggerakkan bumi ke kiri dan ke kanan
   MoonX += MoonSpeed;
+  //arahcahaya = MoonX;
   
   // Jika bumi mencapai batas kiri atau kanan layar, balik arah geraknya
   if (MoonX < 100 || MoonX > width - 100) {
-    MoonSpeed *= -1;
+    MoonSpeed *= -1;}
+   if (kekiri == false){
+    directionalLight(204, 204, 204, cahaya, 0, -1);
+    cahaya = cahaya + 0.002;
   }
-  
+  else if(kekiri == true){
+    cahaya = cahaya - 0.002;
+    directionalLight(204, 204, 204, cahaya, 0, -1);
+  }
+  if (MoonX >1300){kekiri = true;}
+  if (MoonX < 200){kekiri = false;}
   // Push untuk awal objek bulan
   pushMatrix(); // Simpan transformasi
   
   // Mengatur posisi bulan agar berpindah berdasarkan nilaiXBulan
   translate(MoonX, 0);
+  
+
   
   // Bulan
   stroke(231, 226, 207); // Warna Cream

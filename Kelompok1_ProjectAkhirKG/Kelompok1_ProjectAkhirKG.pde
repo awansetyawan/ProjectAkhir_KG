@@ -1,6 +1,6 @@
 import processing.sound.*; // library sound
 SoundFile unta; //variabel suara
-
+SoundFile gurun;
 
 Piramid piramida = new Piramid();
 unsurAlam alam = new unsurAlam();
@@ -37,12 +37,22 @@ boolean alir = false;
 
 int gerakUnta = 600;
 
-// Fungsi mouseClicked untuk mematikan dan menghidupan scaling
+// Fungsi mouseClicked untuk mengganti suasana
 void mouseClicked(){
   if (!Suasana) {
     Suasana = true;
+    langit.time = 0;
+    langit.MoveX = 0;
+    langit.MoveY = 0;
+    sunY = 0;
+    cahaya2 = 0;
   } else {
     Suasana = false;
+    langit.time = 0;
+    langit.MoveX = 0;
+    langit.MoveY = 0;
+    sunY = 0;
+    cahaya2 = 0;
   }
 }
 
@@ -60,21 +70,25 @@ void setup(){
   
   ImageUnta = loadImage("Unta.png");
   ImageUnta.resize(200, 200);
+  
   unta = new SoundFile(this, "untasound.mp3");
   
+  gurun = new SoundFile(this, "gurunsound.mp3");
+  
+  gurun.loop();
 }
 
 void draw(){
   if(!Suasana){
-    langit.Malam();
-  }else{
     langit.Sore();
+  }else{
+    langit.Malam();
   }
   
    alam.tanah();
   
   piramida.bayanganPiramid();
-  image(ImageBangunan, 915, 263);
+  image(ImageBangunan, 919, 265);
   piramida.piramid(680,300,1,2.1,-2.5);
   piramida.piramid(350,310,0.8,2.3,-2);
   piramida.piramid(100,350,0.5,2.3,-2);
@@ -88,22 +102,25 @@ void draw(){
 
   alam.drawKerikil();
   
-  
-  
 }
 
-void keyPressed(){
-   unta.stop();
+void keyPressed() {
+  unta.stop();
   int d = second();
-  text(d,10,10);
-  if(gerakUnta<=425){
+  text(d, 10, 10);
+  if (gerakUnta <= 425) {
     gerakUnta = 426;
-  }
-  else if (keyCode==LEFT) {
-    gerakUnta =gerakUnta-10;
+  } else if (keyCode == LEFT) {
+    gerakUnta = gerakUnta - 10;
     unta.play();
-  } else if (keyCode==RIGHT) {
-  gerakUnta =gerakUnta+10;
-  unta.play();
+    gurun.stop();
+  } else if (keyCode == RIGHT) {
+    gerakUnta = gerakUnta + 10;
+    unta.play();
+    gurun.stop();
   }
+}
+
+void keyReleased() {
+  gurun.loop(); // Stop playing the gurun sound
 }

@@ -10,7 +10,7 @@ class Piramid{
     pushMatrix();
     fill(#C49E90);
     //triangle(100, 300, 150, 150, 250, 300);
-    triangle(786, 471, 855, 441, 1100, 451);
+    triangle(780, 471, 855, 441, 1100, 451);
     popMatrix();
     //popMatrix();
   }

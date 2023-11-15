@@ -1,30 +1,16 @@
 class Langit{
-  int numStars = 80; // Jumlah Bintang
+int numStars = 80; // Jumlah Bintang
 int[] starX = new int[numStars];
 int[] starY = new int[numStars];
 
-float MoonX = 0; // Koordinat awal X bulan
-float MoonY = 0; // Koordinat awal X bulan
+float MoveX = 0; // Koordinat awal X
+float MoveY = 0; // Koordinat awal Y
 
-float MoonSpeed = 1; // Kecepatan gerak bulan
+//float MoonSpeed = 1; // Kecepatan gerak bulan
 
-void generateRandomStars() {
-  // Perulangan for untuk memmbuat posisi bintang
-  for (int i = 0; i < numStars; i++) {
-    starX[i] = int(random(width));
-    starY[i] = int(random(300));
-  }
-}
-
-void drawStars() {
-  // Perulangan for untuk menggambar bintang sesuai dengan posisi yang telah ditentukan
-  for (int i = 0; i < numStars; i++) {
-    float starSize = random(1, 4); // Ukuran random bintang
-    fill(205, 245, 253); // Warna Kuning
-    noStroke();
-    ellipse(starX[i], starY[i], starSize, starSize); // Menggambar bintang dengan ukuran yang berubah
-  }
-}
+float time = 0;
+float totalTime = 880; // Sesuaikan dengan durasi animasi
+float speed = 0.5; // Sesuaikan dengan kecepatan yang diinginkan
 
 void Malam(){
  background(19, 0, 90); 
@@ -40,10 +26,10 @@ void drawBulan(){
   //arahcahaya = MoonX;
   
   // Jika bumi mencapai batas kiri atau kanan layar, balik arah geraknya
-  if (MoonX > width - 2000 && MoonY > height - 350) {
-    MoonY *=-1;
-    MoonX *=-1;
-  }
+  //if (MoonX > width - 2000 && MoonY > height - 350) {
+  //  MoonY *=-1;
+  //  MoonX *=-1;
+  //}
   // if (kekiri == false){
   //  directionalLight(204, 204, 204, cahaya, 0, -1);
   //  cahaya = cahaya + 0.002;
@@ -53,15 +39,32 @@ void drawBulan(){
   //  directionalLight(204, 204, 204, cahaya, 0, -1);
   //}
 
+  // Animasi terbit dan terbenam
+  if (time < totalTime) {
+    // Menaik secara diagonal
+    MoveX += 2.5 * speed;
+    MoveY += 1 * speed;
+  } else {
+    // Turun secara diagonal
+    MoveX += 2.5 * speed;
+    MoveY -= 1 * speed;
+  }
+
   // Push untuk awal objek bulan
   pushMatrix(); // Simpan transformasi
   //rotate(-MoonX);
   
-  // Mengatur posisi bulan agar berpindah berdasarkan nilaiXBulan
-  translate(500+MoonX,200-MoonY,-200);
-  scale(1.3);
+  //if (MoonY < 300) {
+  //  // Mengatur posisi bulan agar berpindah berdasarkan nilaiXBulan
+  //  translate(780+MoonX,-200+MoonY,-300); 
+  //}else{
+  //  // Mengatur posisi bulan agar berpindah berdasarkan nilaiXBulan
+  //  translate(50+MoonX,100-MoonY,-300);
+  //}
   
-
+  translate(-250 + MoveX, 150 - MoveY, -300);
+  
+  scale(1.3);
   
   // Bulan
   stroke(231, 226, 207); // Warna Cream
@@ -81,16 +84,41 @@ void drawBulan(){
   circle(20, 130, 15);
   noStroke();
   
-   MoonX += 1; // Menggerakan bulan
-  MoonY += 0.5; // Menggerakan bulan
+  // Perbarui waktu
+  time += 1;
+
+  // Atur agar animasi berulang
+  if (time > 2.0 * totalTime) {
+    time = 0;
+    MoveX = 0;
+    MoveY = 0;
+    cahaya2 = 0;
+  }
+  
+  //MoonX += 1; // Menggerakan bulan
+  //MoonY += 0.5; // Menggerakan bulan
 
   // Pop untuk akhir objek bulan
   popMatrix(); // Hapus transformasi
 }
 
+void generateRandomStars() {
+  // Perulangan for untuk memmbuat posisi bintang
+  for (int i = 0; i < numStars; i++) {
+    starX[i] = int(random(width));
+    starY[i] = int(random(300));
+  }
+}
 
-
-
+void drawStars() {
+  // Perulangan for untuk menggambar bintang sesuai dengan posisi yang telah ditentukan
+  for (int i = 0; i < numStars; i++) {
+    float starSize = random(1, 4); // Ukuran random bintang
+    fill(205, 245, 253); // Warna Kuning
+    noStroke();
+    ellipse(starX[i], starY[i], starSize, starSize); // Menggambar bintang dengan ukuran yang berubah
+  }
+}
 
 void drawCloud(float x, float y) {
   // Kerangka Awan
@@ -128,33 +156,69 @@ void Sore(){
 void drawSun(){
   fill(255, 165, 0);  // Warna oren
   noStroke();
+  
+  // Animasi terbit dan terbenam
+  if (time < totalTime) {
+    // Menaik secara diagonal
+    MoveX += 2.5 * speed;
+    MoveY += 1 * speed;
+  } else {
+    // Turun secara diagonal
+    MoveX += 2.5 * speed;
+    MoveY -= 1 * speed;
+  }
+  
   pushMatrix();
-  translate(500+MoonX, 200-MoonY, -200);
+  
+  translate(-250 + MoveX, 350 - MoveY, -300);
+  
   scale(0.8);
+  
   circle(0, 0, 200);
   
-   MoonX += 1; // Menggerakan bulan
-  MoonY += 0.5; // Menggerakan bulan
+  //MoveX += 1; // Menggerakan bulan
+  //MoveY += 0.5; // Menggerakan bulan
+  
+  // Perbarui waktu
+  time += 1;
+
+  // Atur agar animasi berulang
+  if (time > 2.0 * totalTime) {
+    time = 0;
+    MoveX = 0;
+    MoveY = 0;
+    cahaya2 = 0;
+  }
+  
   popMatrix();
   
   // Pergerakan matahari ke atas
-  sunY += 1;
+  if (time != 0){
+    sunY += speed; 
+  }else{
+    sunY = 0;
+  }
     
   // Jika matahari berada di atas layar, reset posisinya
-  if (MoonX > width - 2000 && MoonY > height - 350) {
-    MoonY *=-1;
-    MoonX *=-1;
-  }
-  if (ulang == false){
-    directionalLight(255, 255, 255, cahaya2, 0, -1);
+  //if (MoonX > width - 2000 && MoonY > height - 350) {
+  //  MoonY *=-1;
+  //  MoonX *=-1;
+  //}
+  
+  // 1
+  if (time != 0){
+    directionalLight(255, 255, 255, cahaya2, 0, -3);
     cahaya2 = cahaya2 + 0.005;
   }
-  //else if(ulang == true){
-  //  cahaya = cahaya - 0.002;
-  //  directionalLight(204, 204, 204, cahaya, 0, -1);
-  //}
-  if (sunY < height - 100){kekiri = true;}
-  if (sunY == height - 100){kekiri = false; cahaya2 = 0;}
+  
+  else {
+    cahaya = cahaya - 0.002;
+    directionalLight(204, 204, 204, cahaya, 0, -3);
+  }
+  
+  // 2
+  //if (sunY < height - 100){kekiri = true;}
+  //if (sunY == height - 100){kekiri = false; cahaya2 = 0;}
 }
 
 void movingCloud(){

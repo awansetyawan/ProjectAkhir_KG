@@ -1,3 +1,7 @@
+import processing.sound.*; // library sound
+SoundFile unta; //variabel suara
+
+
 Piramid piramida = new Piramid();
 unsurAlam alam = new unsurAlam();
 Pohon pohon = new Pohon();
@@ -31,6 +35,8 @@ int x1 = 0;
 
 boolean alir = false;
 
+int gerakUnta = 600;
+
 // Fungsi mouseClicked untuk mematikan dan menghidupan scaling
 void mouseClicked(){
   if (!Suasana) {
@@ -54,11 +60,11 @@ void setup(){
   
   ImageUnta = loadImage("Unta.png");
   ImageUnta.resize(200, 200);
+  unta = new SoundFile(this, "untasound.mp3");
   
 }
 
 void draw(){
- 
   if(!Suasana){
     langit.Malam();
   }else{
@@ -75,11 +81,29 @@ void draw(){
  
   
   alam.sungai();
+  image(ImageUnta, gerakUnta, 450);
   pohon.drawTreePalm1();
   pohon.drawTreePalm2();
   pohon.drawTreePalm3();
 
   alam.drawKerikil();
-  image(ImageUnta, 600, 450);
   
+  
+  
+}
+
+void keyPressed(){
+   unta.stop();
+  int d = second();
+  text(d,10,10);
+  if(gerakUnta<=425){
+    gerakUnta = 426;
+  }
+  else if (keyCode==LEFT) {
+    gerakUnta =gerakUnta-10;
+    unta.play();
+  } else if (keyCode==RIGHT) {
+  gerakUnta =gerakUnta+10;
+  unta.play();
+  }
 }

@@ -1,14 +1,10 @@
 class Piramid{
   
   void bayanganPiramid(){
-    pushMatrix();
-    translate(1100,220);
-    text(mouseX,10,0);
-    text(mouseY,10,10);
-    popMatrix();
+   
     //rotate(radians(90));
     pushMatrix();
-    fill(#C49E90);
+    fill(#6C3428);
     //triangle(100, 300, 150, 150, 250, 300);
     triangle(780, 471, 855, 441, 1100, 451);
     popMatrix();

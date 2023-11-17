@@ -32,17 +32,40 @@ class unsurAlam{
   }
   
   void tanah(){
+    if(!Suasana){
+      pushMatrix();
+      fill(#BA704F);
+      translate(0,0,-200);
+      rect(-200,400,2000,800);
+      arc(1000,400,2500,50,PI,TWO_PI);
+      fill(#DFA878);
+      noStroke();
+      arc(600,900,2500,300,PI,TWO_PI);
+      square(-200,900,2000);  
+      popMatrix();
+      pushMatrix();
+      translate(0,0,-200);
+      rotateX(2);
+     quad(2000,400,2000,900,900,900,1000,900);
+      popMatrix();
+  }else{
     pushMatrix();
-    fill(#CA965C);
+    fill(#6C3428);
     translate(0,0,-200);
     rect(-200,400,2000,800);
     arc(1000,400,2500,50,PI,TWO_PI);
-   
     fill(#DFA878);
+    noStroke();
     arc(600,900,2500,300,PI,TWO_PI);
-   
     square(-200,900,2000);  
     popMatrix();
+    pushMatrix();
+    translate(0,0,-200);
+    rotateX(2);
+   quad(2000,400,2000,900,900,900,1000,900);
+    popMatrix();
+  }
+    
   }
   
   
@@ -137,7 +160,7 @@ void aliran(int x, int y){
     arc(270, 880, 80, 80, PI, TWO_PI);
     arc(400, 880, 50, 50, PI, TWO_PI);
     arc(920, 710, 60, 60, PI, TWO_PI);
-    arc(1300, 720, 90, 90, PI, TWO_PI);
+    arc(1300, 730, 90, 90, PI, TWO_PI);
   }
 
 }

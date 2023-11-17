@@ -1,5 +1,5 @@
 class Langit{
-int numStars = 80; // Jumlah Bintang
+int numStars = 200; // Jumlah Bintang
 int[] starX = new int[numStars];
 int[] starY = new int[numStars];
 
@@ -103,21 +103,27 @@ void drawBulan(){
 }
 
 void generateRandomStars() {
+  
   // Perulangan for untuk memmbuat posisi bintang
   for (int i = 0; i < numStars; i++) {
-    starX[i] = int(random(width));
-    starY[i] = int(random(300));
+    starX[i] = int(random((width+900)));
+    starY[i] = int(random(450));
   }
+  
 }
 
 void drawStars() {
   // Perulangan for untuk menggambar bintang sesuai dengan posisi yang telah ditentukan
   for (int i = 0; i < numStars; i++) {
-    float starSize = random(1, 4); // Ukuran random bintang
+    float starSize = random(1, 8); // Ukuran random bintang
     fill(205, 245, 253); // Warna Kuning
     noStroke();
+    pushMatrix();
+    translate(-300,-150,-300);
     ellipse(starX[i], starY[i], starSize, starSize); // Menggambar bintang dengan ukuran yang berubah
+    popMatrix();
   }
+  
 }
 
 void drawCloud(float x, float y) {

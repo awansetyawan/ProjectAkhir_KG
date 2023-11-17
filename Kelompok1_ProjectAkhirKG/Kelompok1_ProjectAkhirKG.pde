@@ -63,6 +63,7 @@ void setup(){
   
   hint(DISABLE_OPTIMIZED_STROKE); // Membuat anti aliasing
   
+  
   langit.generateRandomStars(); // Memanggil fungsi membuat bintang
   
   ImageBangunan = loadImage("Bangunan.png");

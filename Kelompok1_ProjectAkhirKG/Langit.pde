@@ -115,7 +115,7 @@ void generateRandomStars() {
 void drawStars() {
   // Perulangan for untuk menggambar bintang sesuai dengan posisi yang telah ditentukan
   for (int i = 0; i < numStars; i++) {
-    float starSize = random(1, 8); // Ukuran random bintang
+    float starSize = random(1, 6); // Ukuran random bintang
     fill(205, 245, 253); // Warna Kuning
     noStroke();
     pushMatrix();

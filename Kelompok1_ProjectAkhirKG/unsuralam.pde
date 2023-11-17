@@ -103,6 +103,8 @@ class unsurAlam{
   batu(0.4, 20,550);
   batu(0.7, 1020,630);
   batu(0.8, 80,750);
+  
+  piramida.Pagar();
 }
 
 void aliran(int x, int y){

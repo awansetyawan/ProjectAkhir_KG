@@ -10,6 +10,7 @@ Langit langit = new Langit();
 
 PImage ImageUnta; // Deklarasi objek Image
 PImage ImageBangunan; // Deklarasi objek Image
+PImage ImageBangunan2; // Deklarasi objek Image
 
 boolean Suasana = false;
 
@@ -69,6 +70,9 @@ void setup(){
   ImageBangunan = loadImage("Bangunan.png");
   ImageBangunan.resize(600, 130);
   
+  ImageBangunan2 = loadImage("Bangunan2.png");
+  ImageBangunan2.resize(200, 130);
+  
   ImageUnta = loadImage("Unta.png");
   ImageUnta.resize(200, 200);
   
@@ -86,10 +90,12 @@ void draw(){
     langit.Malam();
   }
   
-   alam.tanah();
+  alam.tanah();
   
   piramida.bayanganPiramid();
-  image(ImageBangunan, 919, 265);
+  
+  piramida.Bangunan();
+  
   piramida.piramid(680,300,1,2.1,-2.5);
   piramida.piramid(350,310,0.8,2.3,-2);
   piramida.piramid(100,350,0.5,2.3,-2);

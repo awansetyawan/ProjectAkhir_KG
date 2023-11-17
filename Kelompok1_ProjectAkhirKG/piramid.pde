@@ -12,7 +12,6 @@ class Piramid{
   }
   
   
-  
   void piramid(float x, float y, float skala, float rotateX, float rotateZ ){
   pushMatrix();
   translate(x, y, 0);
@@ -59,6 +58,107 @@ class Piramid{
   popMatrix();
   //triangle(0,300,30,300,175,100);
 
+}
+
+void Bangunan(){
+  if(!Suasana){
+    pushMatrix();
+    translate(999, 258, -100);
+    image(ImageBangunan, 0, 0);
+    popMatrix();
+    
+    pushMatrix();
+    translate(798.8, 258, -100);
+    image(ImageBangunan2, 0, 0);
+    popMatrix();
+  }else{
+    directionalLight(255, 255, 255, 255, 0, -3);
+    pushMatrix();
+    translate(999, 258, -100);
+    image(ImageBangunan, 0, 0);
+    popMatrix();
+    
+    pushMatrix();
+    translate(798.8, 258, -100);
+    image(ImageBangunan2, 0, 0);
+    popMatrix();
+  }
+}
+
+void Pagar(){
+  fill(#88897F);
+  stroke(#929380);
+  strokeWeight(1);
+  pushMatrix();
+  translate(96, 0, 110);
+  quad(10, 450, 110, 450, 150, 480, -10, 480);
+  popMatrix();
+  
+  fill(#929380);
+  pushMatrix();
+  translate(300, 0, 110);
+  quad(-70, 450, -50, 450, -30, 480, -85, 480);
+  popMatrix();
+  
+  fill(#88897F);
+  pushMatrix();
+  translate(240, 450, 110); // Pindahkan titik pusat ke tengah layar
+  
+  float radius = 10;
+  beginShape();
+  vertex(radius, 0);
+  
+  // BezierVertex(p1x, p1y, p2x, p2y, x, y)
+  bezierVertex(radius, -radius*0.55, radius*0.55, -radius, 0, -radius);
+  bezierVertex(-radius*0.55, -radius, -radius, -radius*0.55, -radius, 0);
+  endShape(CLOSE);
+  popMatrix();
+  
+  fill(#88897F);
+  stroke(#929380);
+  strokeWeight(1);
+  pushMatrix();
+  translate(370, 0, 110);
+  quad(13, 450, 120, 450, 150, 480, -10, 480);
+  popMatrix();
+  
+  fill(#929380);
+  pushMatrix();
+  translate(410, 0, 110);
+  quad(-70, 450, -50, 450, -30, 480, -85, 480);
+  popMatrix();
+  
+  fill(#88897F);
+  pushMatrix();
+  translate(350, 450, 110); // Pindahkan titik pusat ke tengah layar
+  
+  beginShape();
+  vertex(radius, 0);
+  
+  // BezierVertex(p1x, p1y, p2x, p2y, x, y)
+  bezierVertex(radius, -radius*0.55, radius*0.55, -radius, 0, -radius);
+  bezierVertex(-radius*0.55, -radius, -radius, -radius*0.55, -radius, 0);
+  endShape(CLOSE);
+  popMatrix();
+  
+  fill(#929380);
+  pushMatrix();
+  translate(580, 0, 110);
+  quad(-70, 450, -50, 450, -30, 480, -85, 480);
+  popMatrix();
+  
+  fill(#88897F);
+  pushMatrix();
+  translate(520, 450, 110); // Pindahkan titik pusat ke tengah layar
+  
+  beginShape();
+  vertex(radius, 0);
+  
+  // BezierVertex(p1x, p1y, p2x, p2y, x, y)
+  bezierVertex(radius, -radius*0.55, radius*0.55, -radius, 0, -radius);
+  bezierVertex(-radius*0.55, -radius, -radius, -radius*0.55, -radius, 0);
+  endShape(CLOSE);
+  popMatrix();
 }
 
 }

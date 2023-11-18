@@ -86,23 +86,27 @@ void Bangunan(){
 }
 
 void Pagar(){
+  
+  // dinding
   fill(#88897F);
   stroke(#929380);
   strokeWeight(1);
   pushMatrix();
   translate(96, 0, 110);
-  quad(10, 450, 110, 450, 150, 480, -10, 480);
+  quad(10, 430, 110, 430, 150, 480, -10, 480);
   popMatrix();
   
+  
+  // tugu
   fill(#929380);
   pushMatrix();
   translate(300, 0, 110);
-  quad(-70, 450, -50, 450, -30, 480, -85, 480);
+  quad(-70, 430, -50, 430, -30, 480, -85, 480);
   popMatrix();
   
   fill(#88897F);
   pushMatrix();
-  translate(240, 450, 110); // Pindahkan titik pusat ke tengah layar
+  translate(240, 430, 110); // Pindahkan titik pusat ke tengah layar
   
   float radius = 10;
   beginShape();
@@ -114,23 +118,25 @@ void Pagar(){
   endShape(CLOSE);
   popMatrix();
   
+  // dinding
   fill(#88897F);
   stroke(#929380);
   strokeWeight(1);
   pushMatrix();
   translate(370, 0, 110);
-  quad(13, 450, 120, 450, 150, 480, -10, 480);
+  quad(9, 430, 124, 430, 150, 480, -10, 480);
   popMatrix();
   
+  // tugu
   fill(#929380);
   pushMatrix();
   translate(410, 0, 110);
-  quad(-70, 450, -50, 450, -30, 480, -85, 480);
+  quad(-70, 430, -50, 430, -30, 480, -85, 480);
   popMatrix();
   
   fill(#88897F);
   pushMatrix();
-  translate(350, 450, 110); // Pindahkan titik pusat ke tengah layar
+  translate(350, 430, 110); // Pindahkan titik pusat ke tengah layar
   
   beginShape();
   vertex(radius, 0);
@@ -141,15 +147,16 @@ void Pagar(){
   endShape(CLOSE);
   popMatrix();
   
+  // tugu
   fill(#929380);
   pushMatrix();
   translate(580, 0, 110);
-  quad(-70, 450, -50, 450, -30, 480, -85, 480);
+  quad(-70, 430, -50, 430, -30, 480, -85, 480);
   popMatrix();
   
   fill(#88897F);
   pushMatrix();
-  translate(520, 450, 110); // Pindahkan titik pusat ke tengah layar
+  translate(520, 430, 110); // Pindahkan titik pusat ke tengah layar
   
   beginShape();
   vertex(radius, 0);
